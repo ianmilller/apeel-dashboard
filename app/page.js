@@ -598,8 +598,8 @@ export default function ApeelDashboard() {
               <div className="text-xs text-gray-600 mt-1.5 font-medium">Total Impressions</div>
             </div>
             <div className="text-center p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200 shadow-sm">
-              <div className="text-2xl font-bold text-gray-900">224,286</div>
-              <div className="text-xs text-gray-600 mt-1.5 font-medium">Total Results</div>
+              <div className="text-2xl font-bold text-gray-900">NA</div>
+              <div className="text-xs text-gray-600 mt-1.5 font-medium">TikTok and LinkedIn</div>
             </div>
             <div className="text-center p-5 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl border border-indigo-200 shadow-sm">
               <div className="text-2xl font-bold text-indigo-700">$5.47</div>
@@ -636,7 +636,7 @@ export default function ApeelDashboard() {
                 <div className="flex-1">
                   <h3 className="text-sm font-semibold text-gray-900 mb-2">Audience demographics validate the Peak Insights segmentation strategy</h3>
                   <p className="text-sm text-gray-700 leading-relaxed">
-                    The data confirms strategic alignment across platforms. Website traffic shows near-perfect gender parity (50.6% male, 49.4% female) with concentrated interest affinities in Technology/Technophiles (5,942 users) and Business/Finance segments. X's male-dominant audience (66.6%) with 75.4% aged 25-54 mirrors the segmentation outlined in the Apeel 2.0 Media and Digital Strategy, demonstrating precise targeting execution.
+                    The data confirms strategic alignment with the target segmentation: men 18–34 and 55+, college-educated, with household incomes of $100,000–$199,000 and $200,000+. X demographics show 66.6% male with 29.0% in the 18–34 bracket and 20.5% aged 55+. TED Talk viewership skews 65.2% male with 23.6% aged 65+ and 10.2% aged 25–34. Website interest affinities validate income and education proxies: Technology/Technophiles (5,942 users), Banking & Finance/Avid Investors (5,111 users), and News & Politics/Business Readers (4,272 users) map directly to high-income, educated professionals. This alignment demonstrates precise targeting execution across the Apeel 2.0 Media and Digital Strategy.
                   </p>
                 </div>
               </div>
