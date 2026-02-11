@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { ArrowUpRight, ArrowDownRight, ExternalLink } from 'lucide-react';
 
 export default function ApeelDashboard() {
@@ -32,6 +32,21 @@ export default function ApeelDashboard() {
     { month: 'Jan \'26', mentions: 3200 },
   ];
 
+  const sentimentOverTime = [
+    { month: 'Feb 2025', positive: 4200, neutral: 5100, negative: 12800 },
+    { month: 'Mar 2025', positive: 3100, neutral: 3600, negative: 5200 },
+    { month: 'Apr 2025', positive: 4800, neutral: 6200, negative: 14900 },
+    { month: 'May 2025', positive: 5600, neutral: 7800, negative: 9200 },
+    { month: 'Jun 2025', positive: 11200, neutral: 18400, negative: 29800 },
+    { month: 'Jul 2025', positive: 28600, neutral: 47200, negative: 89100 },
+    { month: 'Aug 2025', positive: 6100, neutral: 8900, negative: 11200 },
+    { month: 'Sep 2025', positive: 4200, neutral: 5800, negative: 6900 },
+    { month: 'Oct 2025', positive: 3400, neutral: 4100, negative: 5200 },
+    { month: 'Nov 2025', positive: 3100, neutral: 3800, negative: 4600 },
+    { month: 'Dec 2025', positive: 2900, neutral: 3500, negative: 4200 },
+    { month: 'Jan 2026', positive: 3200, neutral: 3900, negative: 4800 },
+  ];
+
   const topInfluencers = [
     { rank: 1, name: 'Wide Awake Media', handle: '@wideawake_media', avatar: 'http://pbs.twimg.com/profile_images/1624380673933934592/sKyPr3FE_normal.jpg', posts: 6, engagement: 91266, profile: 'https://x.com/wideawake_media' },
     { rank: 2, name: 'Rob Schneider 🇺🇸', handle: '@RobSchneider', avatar: 'http://pbs.twimg.com/profile_images/1587490892083974146/p3jL3LPH_normal.jpg', posts: 6, engagement: 88819, profile: 'https://x.com/RobSchneider' },
@@ -44,15 +59,6 @@ export default function ApeelDashboard() {
     { rank: 9, name: 'illuminatibot', handle: '@iluminatibot', avatar: 'http://pbs.twimg.com/profile_images/1969369509070061568/CJpAK3Ky_normal.jpg', posts: 6, engagement: 46284, profile: 'https://x.com/iluminatibot' },
     { rank: 10, name: 'healthbot', handle: '@thehealthb0t', avatar: 'http://pbs.twimg.com/profile_images/1969367453265510401/RvvsNw5K_normal.jpg', posts: 22, engagement: 37652, profile: 'https://x.com/thehealthb0t' },
   ];
-
-  const earnedMediaData = {
-    links: 946,
-    totalEngagement: 1162,
-    avgEngagement: 1,
-    totalUVM: 6165637380,
-    journalistShares: 4,
-    journalistReach: 386768
-  };
 
   const linkedinPosts = [
     { date: '1/25/2026', post: 'We heard 2026 is the new 2016… so here\'s a throwback. (6-image carousel)', impressions: 8492, engagements: 5077, rate: 59.79, link: 'https://linkedin.com/feed/update/urn:li:ugcPost:7421322739656892416' },
@@ -374,6 +380,91 @@ export default function ApeelDashboard() {
                   <strong>Key Insight:</strong> July 2025 spike (155K mentions) driven by Michelle Pfeiffer's post about Apeel, which the company leveraged as a communications opportunity. Strategic response and her subsequent correction helped normalize conversation levels.
                 </p>
               </div>
+
+              {/* Sentiment Over Time */}
+              <div className="mt-8 border-t border-gray-200 pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-900">Sentiment Analysis Over Time</h4>
+                    <p className="text-xs text-gray-500 mt-1">Breakdown of positive, neutral, and negative mentions</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs text-gray-500">Total Results</div>
+                    <div className="text-sm font-semibold text-gray-900">292.4K</div>
+                  </div>
+                </div>
+                <ResponsiveContainer width="100%" height={280}>
+                  <LineChart data={sentimentOverTime}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
+                    <XAxis 
+                      dataKey="month" 
+                      stroke="#9CA3AF" 
+                      tick={{ fill: '#6B7280', fontSize: 10 }}
+                      axisLine={{ stroke: '#E5E7EB' }}
+                    />
+                    <YAxis 
+                      stroke="#9CA3AF" 
+                      tick={{ fill: '#6B7280', fontSize: 11 }}
+                      axisLine={false}
+                      tickLine={false}
+                      tickFormatter={(value) => `${(value / 1000).toFixed(1)}K`}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'white',
+                        border: '1px solid #E5E7EB',
+                        borderRadius: '8px',
+                        fontSize: '12px',
+                        padding: '8px 12px'
+                      }}
+                      formatter={(value) => value.toLocaleString()}
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="positive" 
+                      stroke="#10B981" 
+                      strokeWidth={2.5}
+                      dot={false}
+                      name="Positive"
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="neutral" 
+                      stroke="#F59E0B" 
+                      strokeWidth={2.5}
+                      dot={false}
+                      name="Neutral"
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="negative" 
+                      stroke="#EF4444" 
+                      strokeWidth={2.5}
+                      dot={false}
+                      name="Negative"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+                <div className="mt-4 flex items-center justify-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    <span className="text-xs text-gray-600 font-medium">Positive</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                    <span className="text-xs text-gray-600 font-medium">Neutral</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <span className="text-xs text-gray-600 font-medium">Negative</span>
+                  </div>
+                </div>
+                <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                  <p className="text-xs text-gray-700 leading-relaxed">
+                    <strong className="text-amber-900">Data Limitation:</strong> Talkwalker assigns sentiment algorithmically based on language patterns within individual posts. Posts that agree with negative content receive positive tags -- a post expressing support for criticism of Apeel registers as "positive." When positive or neutral mentions spike alongside negative volume, this typically indicates users amplifying viral criticism with affirmative language. In practical terms, these apparent positive mentions represent negative brand impact. The sentiment distribution should be interpreted as directional rather than absolute.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Top 10 Influencers */}
@@ -489,7 +580,6 @@ export default function ApeelDashboard() {
           </div>
         </div>
 
-
         {/* SECTION 5: PAID PERFORMANCE */}
         <div className="mb-12">
           <div className="mb-6">
@@ -598,8 +688,8 @@ export default function ApeelDashboard() {
               <div className="text-xs text-gray-600 mt-1.5 font-medium">Total Impressions</div>
             </div>
             <div className="text-center p-5 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200 shadow-sm">
-              <div className="text-2xl font-bold text-gray-900">NA</div>
-              <div className="text-xs text-gray-600 mt-1.5 font-medium">TikTok and LinkedIn</div>
+              <div className="text-2xl font-bold text-gray-900">224,286</div>
+              <div className="text-xs text-gray-600 mt-1.5 font-medium">Total Results</div>
             </div>
             <div className="text-center p-5 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl border border-indigo-200 shadow-sm">
               <div className="text-2xl font-bold text-indigo-700">$5.47</div>
