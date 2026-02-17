@@ -253,7 +253,7 @@ export default function ApeelDashboard() {
             </div>
             <div className="text-right">
               <div className="text-xs text-gray-500 uppercase tracking-wide font-medium">Last Updated</div>
-              <div className="text-sm text-gray-900 font-medium">Feb 7, 2026</div>
+              <div className="text-sm text-gray-900 font-medium">Feb 17, 2026</div>
             </div>
           </div>
         </div>
